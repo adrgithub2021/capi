@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:request-config name="HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="a3dfe13a-b946-4b91-b6e7-aa4cee7f11f0" >
+		<http:request-connection host="localhost" port="2326" />
+	</http:request-config>
+	<sub-flow name="customer_api_implementationSub_Flow" doc:id="dd61fc57-87c7-4e63-aeb9-87652ef74a05" >
+		<logger level="INFO" doc:name="Logger" doc:id="462498bf-22fe-439d-9378-eaf2953e8298" message="*****flow started********"/>
+		<http:request method="GET" doc:name="Request" doc:id="3e54abe3-d76e-4eae-8992-9104423e16e9" config-ref="HTTP_Request_configuration" path="/test">
+			<http:query-params ><![CDATA[#[output application/java
+---
+{
+	cusid : 101
+}]]]></http:query-params>
+		</http:request>
+		<logger level="INFO" doc:name="Logger" doc:id="f36d4a37-8060-4108-87f8-ea2b530f32e0" message="****flow Ended*******"/>
+	</sub-flow>
+</mule>

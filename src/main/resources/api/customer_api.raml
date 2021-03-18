@@ -1,0 +1,19 @@
+#%RAML 1.0
+title: customer_api
+baseUri: http://localhost:8081/api
+
+/getCustomer:
+  get:
+    queryParameters:
+      cusid:
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+                "cusid":"101",
+                "cusname":"rasheed"
+              }
+
+    
